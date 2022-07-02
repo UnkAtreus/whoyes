@@ -7,10 +7,10 @@ import { BaseLayout, BasePageHeader } from "../common/components";
 const ToggleItem = ({ discription, id }: any) => {
   const [toggleThisElement, setToggleThisElement] = useState(false);
   return (
-    <div>
+    <div className="mr-1 mb-1">
       {toggleThisElement ? (
         <Button
-          className="bg-orange border border-orange text-white font-bold py-1 px-2 rounded-full mr-1"
+          className="bg-orange border border-orange text-white font-bold py-1 px-2 rounded-full"
           key={id}
           onClick={() => setToggleThisElement((prev) => !prev)}
         >
@@ -18,7 +18,7 @@ const ToggleItem = ({ discription, id }: any) => {
         </Button>
       ) : (
         <Button
-          className="bg-white border border-gray-400 text-gray-400 font-bold py-1 px-2 rounded-full mr-1"
+          className="bg-white border border-gray-400 text-gray-400 font-bold py-1 px-2 rounded-full"
           key={id}
           onClick={() => setToggleThisElement((prev) => !prev)}
         >
@@ -92,14 +92,13 @@ function CreatePost() {
               placeholder="Write something..."
             />
           </Form.Item>
-          
-        </div>
-      </Form>
-      <div className="flex">
+          <div className="flex flex-wrap justify-center pt-2">
             {sexType.map((d, id) => {
               return <ToggleItem id={id} discription={d} />;
             })}
           </div>
+        </div>
+      </Form>
     </BaseLayout>
   );
 }
