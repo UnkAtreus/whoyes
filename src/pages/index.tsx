@@ -1,15 +1,30 @@
 import { Input, Modal, Popover } from "antd";
 import type { NextPage } from "next";
-import BaseLayout from "../common/components/layout";
+
 import { useRouter } from "next/router";
 import { TbLollipop } from "react-icons/tb";
-import { useState } from "react";
-
-import LikeModalContent from "../common/components/LikeModalContent";
-import ProfileCard from "../common/components/profileCard";
+import { useEffect, useState } from "react";
+import {
+  BaseLayout,
+  ProfileCard,
+  LikeModalContent,
+} from "../common/components";
+import PostService from "../common/service/posts";
 
 const Home: NextPage = () => {
+  const [data, setData] = useState<any>();
   const Router = useRouter();
+
+  const featchData = async () => {
+    const query = 1;
+
+    const res = await PostService.id(query.toString());
+    setData(res);
+  };
+
+  useEffect(() => {
+    featchData();
+  }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
