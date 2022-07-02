@@ -32,7 +32,7 @@ const AuthService = {
     async login(payload: Partial<ISignup>) {
         const { data } = await axiosInstance.post("/auth/login", payload);
 
-        const $data: {access_token: string} = data;
+        const $data: {access_token: string, user: {}} = data;
 
         return $data;
     }

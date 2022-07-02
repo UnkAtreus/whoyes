@@ -2,8 +2,10 @@ import { Button, Form, Input } from "antd";
 import React from "react";
 import AuthService from "../common/service/auth";
 import Logo from "../asset/logo.png";
+import { useRouter } from "next/router";
 
 function Signup() {
+  const Router = useRouter();
   const onFinish = (values: any) => {
     console.log("Success:", values);
     // TODO: API HERE
@@ -76,6 +78,12 @@ function Signup() {
           <Button type="primary" htmlType="submit" className="mt-4" block>
             SIGNUP
           </Button>
+          <div
+            onClick={() => Router.push("/login")}
+            className="flex justify-center mt-3 text-primary cursor-pointer"
+          >
+            Already have an account? Log in now
+          </div>
         </Form>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { Input, Modal, Popover } from "antd";
 import type { NextPage } from "next";
 
 import { useRouter } from "next/router";
-import { TbLollipop } from "react-icons/tb";
+
 import { useEffect, useState } from "react";
 import {
   BaseLayout,
@@ -16,15 +16,19 @@ const Home: NextPage = () => {
   const [data, setData] = useState<any>();
   const Router = useRouter();
 
-  const featchData = async () => {
-    const query = 1;
+  // const featchData = async () => {
+  //   const query = 1;
 
-    const res = await PostService.id(query.toString());
-    setData(res);
-  };
+  //   const res = await PostService.id(query.toString());
+  //   setData(res);
+  // };
 
   useEffect(() => {
-    featchData();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Router.push("/login");
+    }
+    // featchData();
   }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -44,7 +48,7 @@ const Home: NextPage = () => {
   return (
     <BaseLayout>
       <div className="sticky top-0 left-0 w-full bg-white px-4 py-4 space-y-2 shadow-md max-w-screen-sm m-auto flex justify-center">
-          <img src={Logo.src} className="h-6"/>
+        <img src={Logo.src} className="h-6" />
       </div>
 
       <div className="py-4 px-6 w-full flex flex-col space-y-6">
@@ -68,6 +72,7 @@ const Home: NextPage = () => {
                 index={index}
                 username="Username"
                 showModal={showModal}
+                key={index}
               />
             );
           })}

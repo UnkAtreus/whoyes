@@ -91,6 +91,18 @@ function CreatePost() {
               <Input placeholder="Write title here..." />
             </Form.Item>
           </div>
+          <Form.Item name="sexType">
+            <Select
+              mode="multiple"
+              allowClear
+              style={{ width: "100%" }}
+              placeholder="Please select your sex type"
+              options={sexType.map((item: any) => ({
+                label: item,
+                value: item,
+              }))}
+            />
+          </Form.Item>
           <Form.Item name="description">
             <Input.TextArea
               showCount
@@ -106,28 +118,6 @@ function CreatePost() {
               }}
               placeholder="Write something..."
             />
-          </Form.Item>
-          <Form.Item name="sexType">
-            <Select
-              mode="multiple"
-              allowClear
-              style={{ width: "100%" }}
-              placeholder="Please select your sex type"
-              options={sexType.map((item: any) => ({
-                label: item,
-                value: item,
-              }))}
-            />
-            {/* <div className="flex flex-wrap justify-center pt-2">
-              {sexType.map((d, id) => {
-                return (
-                  <Tag.CheckableTag key={d} checked={d.indexOf(d) > -1}>
-                    {d}
-                  </Tag.CheckableTag>
-                );
-                // return <ToggleItem id={id} discription={d} key={d} />;
-              })}
-            </div> */}
           </Form.Item>
         </div>
       </Form>

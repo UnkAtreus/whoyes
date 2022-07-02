@@ -12,8 +12,9 @@ function Login() {
 
     AuthService.login(values)
       .then((data) => {
-        console.log(data.access_token);
+        console.log(data);
         localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         Router.push("/");
       })
       .catch((e) => console.log(e));
@@ -56,12 +57,17 @@ function Login() {
             ]}
           >
             <Input placeholder="Password" type="password" />
-            {/* <div className="flex justify-end mt-1">Forgot password ?</div> */}
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>
             LOGIN
           </Button>
+          <div
+            onClick={() => Router.push("/signup")}
+            className="flex justify-center mt-3 text-primary cursor-pointer"
+          >
+            Don't have an account? Sign up now
+          </div>
         </Form>
       </div>
     </div>
