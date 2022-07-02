@@ -13,6 +13,9 @@ function Signup() {
     AuthService.register(values)
       .then((data) => {
         console.log(data);
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        Router.push("/");
       })
       .catch((e) => console.log(e));
   };
