@@ -217,6 +217,38 @@ function editProfile() {
           >
             <Input placeholder="Hips" />
           </Form.Item>
+          <Form.Item
+            label="Penis Length"
+            name="penisLength"
+            rules={[
+              {
+                required: true,
+                message: "Please input your penis length",
+              },
+              {
+                pattern: new RegExp(/\d+/),
+                message: "Please input only number"
+              }
+            ]}
+          >
+            <Input placeholder="Penis Length" />
+          </Form.Item>
+          <Form.Item 
+            label="Penis Circumference" 
+            name="penisGirth"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Penis Circumference",
+              },
+              {
+                pattern: new RegExp(/\d+/),
+                message: "Please input only number"
+              }
+            ]}
+          >
+            <Input placeholder="Penis Circumference" />
+          </Form.Item>
           <Button htmlType="submit" className="mt-4" block>
             SIGNUP
           </Button>
