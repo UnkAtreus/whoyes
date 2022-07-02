@@ -1,15 +1,11 @@
 import { Input, Modal, Popover } from "antd";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import BaseLayout from "../common/components/layout";
-import styles from "../styles/Home.module.css";
-import { BsFillChatSquareTextFill, BsHeartFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 import LikeModalContent from "../common/components/LikeModalContent";
-import ProfileCard from "../common/components/profileCard";
+import ProfileCard from "../common/components/ProfileCard";
 
 const Home: NextPage = () => {
   const Router = useRouter();
