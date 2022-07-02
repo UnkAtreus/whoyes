@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import LikeModalContent from "../common/components/LikeModalContent";
-import ProfileCard from "../common/components/ProfileCard";
+import ProfileCard from "../common/components/profileCard";
 
 const Home: NextPage = () => {
   const Router = useRouter();
