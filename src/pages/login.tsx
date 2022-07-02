@@ -20,49 +20,54 @@ function Login() {
   };
   return (
     <div className="max-w-screen-sm h-screen flex items-center justify-center p-6 m-auto">
-      <div className="rounded-2xl bg-gray-100 px-6 py-8 w-full">
-        <div className="text-lg font-medium text-center text-gray-500 mb-4">
-          Log in
+      <div>
+        <div className="flex justify-center mb-3">
+          <img src={Logo.src} className="w-48" />
         </div>
-        <Form onFinish={onFinish} layout="vertical">
-          <Form.Item
-            label="Username"
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: "Please input your username",
-              },
-              {
-                whitespace: true,
-                message: "Please input your username",
-              },
-            ]}
-          >
-            <Input placeholder="Username" />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password",
-              },
-              {
-                whitespace: true,
-                message: "Please input your password",
-              },
-            ]}
-          >
-            <Input placeholder="Password" type="password" />
-            {/* <div className="flex justify-end mt-1">Forgot password ?</div> */}
-          </Form.Item>
+        <div className="rounded-2xl bg-gray-100 px-6 py-8 w-full">
+          <div className="text-lg font-medium text-center text-gray-500 mb-4">
+            Log in
+          </div>
+          <Form onFinish={onFinish} layout="vertical">
+            <Form.Item
+              label="Username"
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your username",
+                },
+                {
+                  whitespace: true,
+                  message: "Please input your username",
+                },
+              ]}
+            >
+              <Input placeholder="Username" />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password",
+                },
+                {
+                  whitespace: true,
+                  message: "Please input your password",
+                },
+              ]}
+            >
+              <Input placeholder="Password" type="password" />
+              {/* <div className="flex justify-end mt-1">Forgot password ?</div> */}
+            </Form.Item>
 
-          <Button type="primary" htmlType="submit" block>
-            LOGIN
-          </Button>
-        </Form>
+            <Button type="primary" htmlType="submit" block>
+              LOGIN
+            </Button>
+          </Form>
+        </div>
       </div>
     </div>
   );
