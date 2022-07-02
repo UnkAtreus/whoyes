@@ -1,8 +1,9 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Tag, Select } from "antd";
 import { TextAreaRef } from "antd/lib/input/TextArea";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BaseLayout, BasePageHeader } from "../common/components";
+import PostService from "../common/service/posts";
 
 const ToggleItem = ({ discription, id }: any) => {
   const [toggleThisElement, setToggleThisElement] = useState(false);
@@ -32,7 +33,8 @@ const ToggleItem = ({ discription, id }: any) => {
 function CreatePost() {
   const [isPost, setIsPost] = useState(false);
   const Router = useRouter();
-  const sexType = [
+
+  const sexType: string[] = [
     "Skinship",
     "Manual sex",
     "Oral sex",
@@ -47,7 +49,18 @@ function CreatePost() {
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
+    const payload = {
+      ...values,
+      sexType: values.sexType[0],
+    };
     // TODO: API HERE
+    PostService.create(payload)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -74,9 +87,11 @@ function CreatePost() {
               src="https://xsgames.co/randomusers/avatar.php?g=female"
               alt=""
             />
-            <div>Username</div>
+            <Form.Item name="title" className="m-0 flex-1">
+              <Input placeholder="Write title here..." />
+            </Form.Item>
           </div>
-          <Form.Item name="post">
+          <Form.Item name="description">
             <Input.TextArea
               showCount
               maxLength={150}
@@ -92,11 +107,28 @@ function CreatePost() {
               placeholder="Write something..."
             />
           </Form.Item>
-          <div className="flex flex-wrap justify-center pt-2">
-            {sexType.map((d, id) => {
-              return <ToggleItem id={id} discription={d} />;
-            })}
-          </div>
+          <Form.Item name="sexType">
+            <Select
+              mode="multiple"
+              allowClear
+              style={{ width: "100%" }}
+              placeholder="Please select your sex type"
+              options={sexType.map((item: any) => ({
+                label: item,
+                value: item,
+              }))}
+            />
+            {/* <div className="flex flex-wrap justify-center pt-2">
+              {sexType.map((d, id) => {
+                return (
+                  <Tag.CheckableTag key={d} checked={d.indexOf(d) > -1}>
+                    {d}
+                  </Tag.CheckableTag>
+                );
+                // return <ToggleItem id={id} discription={d} key={d} />;
+              })}
+            </div> */}
+          </Form.Item>
         </div>
       </Form>
     </BaseLayout>

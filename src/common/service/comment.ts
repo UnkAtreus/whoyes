@@ -5,7 +5,7 @@ const CommentService = {
     async list() {
         const { data } = await axiosInstance.get("/comments");
 
-        const $data: Array<any> = data.data;
+        const $data: Array<any> = data;
 
         return $data;
     }
