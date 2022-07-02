@@ -3,7 +3,7 @@ const withAntdLess = require("next-plugin-antd-less");
 module.exports = withAntdLess({
   // optional
   modifyVars: {
-    "@primary-color": "#ff0000",
+    "@primary-color": "#715BED",
     "@border-radius-base": " 8px",
     "@form-item-margin-bottom": "8px",
   },
