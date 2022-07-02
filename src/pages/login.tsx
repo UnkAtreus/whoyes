@@ -9,10 +9,36 @@ function Login() {
           Log in
         </div>
         <Form layout="vertical">
-          <Form.Item label="Username" name="username">
+          <Form.Item 
+            label="Username" 
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Please input your username",
+              },
+              {
+                whitespace: true,
+                message: "Please input your username",
+              }
+            ]}
+          >
             <Input placeholder="Username" />
           </Form.Item>
-          <Form.Item label="Password" name="password">
+          <Form.Item 
+            label="Password" 
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password",
+              },
+              {
+                whitespace: true,
+                message: "Please input your password",
+              }
+            ]}
+          >
             <Input placeholder="Password" type="password" />
             <div className="flex justify-end mt-1">Forgot password ?</div>
           </Form.Item>
