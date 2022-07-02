@@ -13,7 +13,7 @@ function Profile() {
         handleAction={() => {}}
       />
 
-      <div className=" w-full">
+      <div className="w-full square">
         <div className="relative">
           <img
             className="object-cover w-full h-auto"

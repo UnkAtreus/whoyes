@@ -28,9 +28,6 @@ const Home: NextPage = () => {
           <div className="flex-1 items-center flex text-gray-400">
             Write something...
           </div>
-          <div className="bg-gray-800 rounded-lg text-white px-2 py-1 cursor-pointer hover:bg-opacity-90 active:scale-95 transition-all duration-200">
-            Post
-          </div>
         </div>
         <div className="space-y-4">
           {Array.from({ length: 10 }).map((_, index) => (

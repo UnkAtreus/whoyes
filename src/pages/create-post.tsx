@@ -1,12 +1,49 @@
-import { Form, Input } from "antd";
+import { Form, Input, Button } from "antd";
 import { TextAreaRef } from "antd/lib/input/TextArea";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BaseLayout, BasePageHeader } from "../common/components";
 
+const ToggleItem = ({ discription, id }: any) => {
+  const [toggleThisElement, setToggleThisElement] = useState(false);
+  return (
+    <div>
+      {toggleThisElement ? (
+        <Button
+          className="bg-orange border border-orange text-white font-bold py-1 px-2 rounded-full mr-1"
+          key={id}
+          onClick={() => setToggleThisElement((prev) => !prev)}
+        >
+          {discription}
+        </Button>
+      ) : (
+        <Button
+          className="bg-white border border-gray-400 text-gray-400 font-bold py-1 px-2 rounded-full mr-1"
+          key={id}
+          onClick={() => setToggleThisElement((prev) => !prev)}
+        >
+          {discription}
+        </Button>
+      )}
+    </div>
+  );
+};
+
 function CreatePost() {
   const [isPost, setIsPost] = useState(false);
   const Router = useRouter();
+  const sexType = [
+    "Skinship",
+    "Manual sex",
+    "Oral sex",
+    "Anal sex",
+    "Vagina sex",
+    "Toy sex",
+    "BDSM",
+    "First time",
+    "Role-play",
+    "Outdoor",
+  ];
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
@@ -55,8 +92,14 @@ function CreatePost() {
               placeholder="Write something..."
             />
           </Form.Item>
+          
         </div>
       </Form>
+      <div className="flex">
+            {sexType.map((d, id) => {
+              return <ToggleItem id={id} discription={d} />;
+            })}
+          </div>
     </BaseLayout>
   );
 }
