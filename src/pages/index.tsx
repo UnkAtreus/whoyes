@@ -6,6 +6,7 @@ import BaseLayout from "../common/components/layout";
 import styles from "../styles/Home.module.css";
 import { BsFillChatSquareTextFill, BsHeartFill } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { TbLollipop } from "react-icons/tb";
 
 const Home: NextPage = () => {
   const Router = useRouter();
@@ -62,7 +63,7 @@ const Home: NextPage = () => {
               </div>
               <div className="flex space-x-4">
                 <div className="flex space-x-2 items-center">
-                  <BsHeartFill className="text-zinc-500" />
+                  <TbLollipop className="text-zinc-500" />
                   <span>1</span>
                 </div>
                 <div className="flex space-x-2 items-center">
