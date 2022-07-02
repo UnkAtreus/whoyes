@@ -10,6 +10,7 @@ import {
   LikeModalContent,
 } from "../common/components";
 import PostService from "../common/service/posts";
+import Logo from "../asset/logo.png";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<any>();
@@ -42,8 +43,8 @@ const Home: NextPage = () => {
 
   return (
     <BaseLayout>
-      <div className="sticky top-0 left-0 w-full bg-white px-4 py-4 space-y-2 shadow-md max-w-screen-sm m-auto">
-        <h1 className="text-base font-semibold text-center mb-0">WHOYES</h1>
+      <div className="sticky top-0 left-0 w-full bg-white px-4 py-4 space-y-2 shadow-md max-w-screen-sm m-auto flex justify-center">
+          <img src={Logo.src} className="h-6"/>
       </div>
 
       <div className="py-4 px-6 w-full flex flex-col space-y-6">
