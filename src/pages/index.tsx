@@ -1,20 +1,35 @@
-import { Input } from "antd";
+import { Input, Modal, Popover } from "antd";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import BaseLayout from "../common/components/layout";
-import styles from "../styles/Home.module.css";
-import { BsFillChatSquareTextFill, BsHeartFill } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { useState } from "react";
+
+import LikeModalContent from "../common/components/LikeModalContent";
+import ProfileCard from "../common/components/profileCard";
 
 const Home: NextPage = () => {
   const Router = useRouter();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <BaseLayout>
       <div className="sticky top-0 left-0 w-full bg-white px-4 py-4 space-y-2 shadow-md max-w-screen-sm m-auto">
         <h1 className="text-base font-semibold text-center mb-0">WHOYES</h1>
       </div>
+
       <div className="py-4 px-6 w-full flex flex-col space-y-6">
         <div
           onClick={() => Router.push("/create-post")}
@@ -30,47 +45,32 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className="space-y-4">
-          {Array.from({ length: 10 }).map((_, index) => (
-            <div className="rounded-lg p-4 bg-zinc-100 space-y-2" key={index}>
-              <div className="flex space-x-2">
-                <div className="p-1">
-                  <img
-                    className="object-cover w-8 h-8 rounded-full "
-                    src="https://xsgames.co/randomusers/avatar.php?g=female"
-                    alt=""
-                  />
-                </div>
-                <div className="flex-1">
-                  <p className="m-0 font-medium text-sm">Username</p>
-                  <p className="m-0 text-zinc-400 text-xs">
-                    1.2 km far from you
-                  </p>
-                </div>
-                <span className="flex items-start text-zinc-400 text-xs">
-                  48 min
-                </span>
-              </div>
-              <div className="line-clamp-3 text-ellipsis overflow-hidden">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi
-                consectetur, nisi eu consectetur consectetur, nisl nisi
-                consectetur, nisi eu consectetur consectetur, nisl nisi
-                consectetur, nisi eu consectetur consectetur, nisl nisi
-              </div>
-              <div className="flex space-x-4">
-                <div className="flex space-x-2 items-center">
-                  <BsHeartFill className="text-zinc-500" />
-                  <span>1</span>
-                </div>
-                <div className="flex space-x-2 items-center">
-                  <BsFillChatSquareTextFill className="text-zinc-500" />
-                  <span>1</span>
-                </div>
-              </div>
-            </div>
-          ))}
+          {Array.from({ length: 10 }).map((_, index) => {
+            return (
+              <ProfileCard
+                index={index}
+                username="Username"
+                showModal={showModal}
+              />
+            );
+          })}
         </div>
       </div>
+
+      <Modal
+        title={<h1 className="text-center">Who omyim you</h1>}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        className="p-2"
+      >
+        <LikeModalContent />
+        <LikeModalContent />
+        <LikeModalContent />
+        <LikeModalContent />
+        <LikeModalContent />
+      </Modal>
     </BaseLayout>
   );
 };
