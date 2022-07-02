@@ -21,9 +21,9 @@ function Login() {
   };
   return (
     <div className="max-w-screen-sm h-screen flex items-center justify-center p-6 m-auto">
-      <div className="rounded-2xl bg-gray-100 px-6 py-8 w-full">
-        <div className="text-lg font-medium text-center text-gray-500 mb-4">
-          Log in
+      <div>
+        <div className="flex justify-center mb-3">
+          <img src={Logo.src} className="w-48" />
         </div>
         <Form onFinish={onFinish} layout="vertical">
           <Form.Item
