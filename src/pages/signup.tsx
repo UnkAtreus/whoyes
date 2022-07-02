@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import React from "react";
 import AuthService from "../common/service/auth";
+import Logo from "../asset/logo.png";
 
 function Signup() {
   const onFinish = (values: any) => {

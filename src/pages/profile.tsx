@@ -23,7 +23,7 @@ function Profile() {
         </div>
       </div>
 
-      <div className="max-w-screen-sm h-screen p-6">
+      <div className="max-w-screen-sm p-6">
         <p className="m-0 font-medium text-base">Profile</p>
         <p className="m-0 font-medium text-sm text-gray-400 pb-4">
           Bisexual (Female)
