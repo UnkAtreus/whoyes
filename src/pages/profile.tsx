@@ -1,10 +1,18 @@
 import Router from "next/router";
 import React from "react";
+import { useState, useEffect } from 'react';
 import BaseLayout from "../common/components/layout";
 import { BasePageHeader } from "../common/components";
 import { Button, DatePicker, Form, Input } from "antd";
+// import { AuthService } from "../common/service/auth"
 
 function Profile() {
+  const [users, setUsers] = useState(null);
+
+//   useEffect(() => {
+//     const token = localStorage.getItem("token");
+//     AuthService.getById(token).then(x => setUsers(x));
+// }, []);
   return (
     <BaseLayout>
       <BasePageHeader

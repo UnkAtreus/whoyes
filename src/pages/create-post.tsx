@@ -69,7 +69,7 @@ function CreatePost() {
         <BasePageHeader
           title="Create Post"
           handleBack={() => Router.back()}
-          handleAction={() => {}}
+          handleAction={() => Router.push("/")}
           action={
             <button
               type={`${isPost ? "submit" : "button"}`}
