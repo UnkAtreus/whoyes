@@ -22,12 +22,14 @@ const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
   const [comment, setCommentData] = useState<any>([]);
   const Router = useRouter();
 
-  let commentArray: any = [];
-
   const featchData = async () => {
     const res = await PostService.id("1");
     setPostData(res);
     SetUserData(res.user);
+
+    await CommentService.list(res.id).then((data) => {
+      setCommentData(data);
+    });
   };
 
   useEffect(() => {
