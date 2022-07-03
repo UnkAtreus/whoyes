@@ -2,10 +2,7 @@ import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import BaseLayout from "../../common/components/layout";
 import { BasePageHeader } from "../../common/components";
-import { Button, DatePicker, Form, Input } from "antd";
 
-import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, Space } from "antd";
 import Wait from "../../asset/cupid_wait.png";
 import Match from "../../asset/cupid_meet.png";
 import Bye from "../../asset/cupid_love.png";
@@ -13,7 +10,10 @@ import Bye from "../../asset/cupid_love.png";
 function Matching() {
   const [step, setStep] = useState(0);
   const nextStep = () => {
-    setStep((step + 1)%3);
+    if (step == 2) {
+      Router.push("/chats/review");
+    }
+    setStep(step + 1);
   };
   const cupid = [Wait.src, Match.src, Bye.src];
   const topic = [
@@ -26,6 +26,11 @@ function Matching() {
     "Have a good experience!",
     "Maybe tomorrow?",
   ];
+  const buttonDesc = [
+    "Already Met!",
+    "End of our meeting",
+    "Review my partner,"
+  ]
 
   return (
     <BaseLayout>
@@ -45,7 +50,7 @@ function Matching() {
                 className="mt-6 w-full bg-redbutton rounded-lg py-2 text-white"
                 onClick={nextStep}
               >
-                Already Met!
+                {buttonDesc[step]}
               </button>
             </div>
           </div>
