@@ -217,7 +217,7 @@ function editProfile() {
           >
             <Input placeholder="Hips" />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             label="Penis Length"
             name="penisLength"
             rules={[
@@ -246,9 +246,9 @@ function editProfile() {
                 message: "Please input only number"
               }
             ]}
-          >
-            <Input placeholder="Penis Circumference" />
-          </Form.Item>
+          > */}
+            {/* <Input placeholder="Penis Circumference" />
+          </Form.Item> */}
           <Button htmlType="submit" className="mt-4" block>
             SIGNUP
           </Button>
