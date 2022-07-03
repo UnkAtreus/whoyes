@@ -1,16 +1,58 @@
-import Router from "next/router";
+import Router, {useRouter} from "next/router";
 import React from "react";
+import { useState, useEffect } from 'react';
 import BaseLayout from "../common/components/layout";
 import { BasePageHeader } from "../common/components";
 import { Button, DatePicker, Form, Input, message } from "antd";
 import { CameraTwoTone } from "@ant-design/icons";
 import type { RangePickerProps } from 'antd/es/date-picker';
 import moment from 'moment';
+import  AuthService  from "../common/service/auth"
 
 function editProfile() {
+
+  const [user, setUsers] = useState<any>({});
+  
+  useEffect(() => {
+    const res = JSON.parse(localStorage.getItem("user")??"");
+    setUsers(res);
+  }, []);
+  
+  console.log(user);
+
+  const [IUpdate, setIUpdate] = useState({});
+  const Router = useRouter();
+
   const onFinish = (values: any) => {
+
     console.log("Success:", values);
     // TODO: API HERE
+    const payload = {
+      email: "email@hotmail.com",
+      firstname: values.firstname,
+      lastname: values.lastname,
+      birthDate: values.birthDate,
+      idCard: values.idCard,
+      gender: "Transgender",
+      targetGender: "All",
+      sexualOrientation: "Bisexual",
+      height: values.height,
+      weight: values.weight,
+      penisLenght: values.penisLenght,
+      penisGirth: values.penisGirth,
+      breastSize: 36,
+      waistSize: 35,
+      hipSize: 38
+    };
+    console.log(payload);
+    // TODO: API HERE
+    AuthService.update(user,payload)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const onImageUpload = (values: any) => {
@@ -28,7 +70,7 @@ function editProfile() {
       <BasePageHeader
         title="Edit Profile"
         handleBack={() => Router.back()}
-        handleAction={() => {}}
+        handleAction={() => Router.push("/profile")}
       />
 
       <div className=" flex justify-center ">
@@ -62,6 +104,7 @@ function editProfile() {
                 min: 1, max: 50
               },
             ]}
+            
           >
             <Input placeholder="Firstname" />
           </Form.Item>
@@ -86,7 +129,7 @@ function editProfile() {
           </Form.Item>
           <Form.Item 
             label="Date Of Birth" 
-            name="birthdate" 
+            name="birthDate" 
             className="flex"
             rules={[
               {
@@ -99,7 +142,7 @@ function editProfile() {
           </Form.Item>
           <Form.Item 
             label="ID Card" 
-            name="cardId"
+            name="idCard"
             rules={[
               {
                 required: true,
@@ -169,9 +212,9 @@ function editProfile() {
           >
             <Input placeholder="Weight" />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             label="Bust"
-            name="bust"
+            name="breastSize"
             rules={[
               {
                 required: true,
@@ -187,7 +230,7 @@ function editProfile() {
           </Form.Item>
           <Form.Item 
             label="Waist" 
-            name="waist"
+            name="waistSize"
             rules={[
               {
                 required: true,
@@ -203,7 +246,7 @@ function editProfile() {
           </Form.Item>
           <Form.Item 
             label="Hips" 
-            name="hips"
+            name="hipSize"
             rules={[
               {
                 required: true,
@@ -216,10 +259,10 @@ function editProfile() {
             ]}
           >
             <Input placeholder="Hips" />
-          </Form.Item>
-          {/* <Form.Item
+          </Form.Item> */}
+          <Form.Item
             label="Penis Length"
-            name="penisLength"
+            name="penisLenght"
             rules={[
               {
                 required: true,
@@ -246,11 +289,11 @@ function editProfile() {
                 message: "Please input only number"
               }
             ]}
-          > */}
-            {/* <Input placeholder="Penis Circumference" />
-          </Form.Item> */}
+          >
+            <Input placeholder="Penis Circumference" />
+          </Form.Item>
           <Button htmlType="submit" className="mt-4" block>
-            SIGNUP
+            SAVE
           </Button>
         </Form>
       </div>

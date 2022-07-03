@@ -52,6 +52,7 @@ function Matching() {
               >
                 {buttonDesc[step]}
               </button>
+              <p className="text-sm text-gray-400" onClick={()=>{Router.push('/chats/alert')}}>something get wrong?</p>
             </div>
           </div>
         </div>

@@ -1,19 +1,20 @@
 import Router from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import BaseLayout from "../common/components/layout";
 import { BasePageHeader } from "../common/components";
-import { userInfo } from "os";
+import { Button, DatePicker, Form, Input } from "antd";
+import AuthService from "../common/service/auth";
 
 function Profile() {
- 
-  const [user, setData] = useState<any>([]);
+  const [user, setUsers] = useState<any>({});
 
-  useEffect(()=> {
-    const data = JSON.parse(localStorage.getItem("user") ?? "");
-    console.log(data);
-    setData(data);
-  },[])
+  useEffect(() => {
+    const res = JSON.parse(localStorage.getItem("user") ?? "");
+    setUsers(res);
+  }, []);
 
+  console.log(user);
   return (
     <BaseLayout>
       <BasePageHeader
@@ -33,14 +34,26 @@ function Profile() {
       </div>
 
       <div className="max-w-screen-sm p-6">
-        <p className="m-0 font-medium text-base">Profile</p>
+        <div className="flex justify-between">
+          <p className="m-0 font-medium text-base">Profile</p>
+          <p
+            className="m-0 font-normal text-sm text-gray-400"
+            onClick={() => {
+              Router.push("/edit-profile");
+            }}
+          >
+            Edit
+          </p>
+        </div>
         <p className="m-0 font-medium text-sm text-gray-400 pb-4">
           {user.sexualOrientation + " (" + user.gender + ")"} 
         </p>
         <hr></hr>
         <div className="pt-4">
           <p className="m-0 font-medium text-sm">Body Size</p>
-          <p className="m-0 font-normal text-sm">Bust/Waist/Hip: {user.bust??'-' + '/' + user.waist??'-' + '/' + user.hip??'='}</p>
+          <p className="m-0 font-normal text-sm">
+          Penis Circumference/Penis Length: {user.penisGirth}/{user.penisLength}
+          </p>
         </div>
         <div className="pt-4">
           <p className="m-0 font-medium text-sm">Score</p>
@@ -48,10 +61,7 @@ function Profile() {
         </div>
         <div className="pt-4">
           <p className="m-0 font-medium text-sm">About</p>
-          <p className="m-0 font-normal text-sm">
-            This is the description of me! This is the description of me! This
-            is the description of me!
-          </p>
+          <p className="m-0 font-normal text-sm">{user.description}</p>
         </div>
       </div>
     </BaseLayout>
