@@ -2264,6 +2264,16 @@
   "resolved" "https://registry.npmjs.org/quick-lru/-/quick-lru-5.1.1.tgz"
   "version" "5.1.1"
 
+"random-float@^3.0.0":
+  "integrity" "sha512-8U2ToxX8h6h9gpzyGyxCcd/LatiWcm0sOVG+SlsGyRs+3k8ae/EOH9KDsoquvbdCCqKQW1rx49iRPyBt/TF6NQ=="
+  "resolved" "https://registry.npmjs.org/random-float/-/random-float-3.0.0.tgz"
+  "version" "3.0.0"
+
+"random-int@^3.0.0":
+  "integrity" "sha512-QvewnOwigesW2WFyTHiQzR6XUUcSQO/BqmfgRz5N5GpGrKQnTf7ebMz8UtuwaET8IfO1n0wLx8/fHsI8E0Jpow=="
+  "resolved" "https://registry.npmjs.org/random-int/-/random-int-3.0.0.tgz"
+  "version" "3.0.0"
+
 "randombytes@^2.1.0":
   "integrity" "sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ=="
   "resolved" "https://registry.npmjs.org/randombytes/-/randombytes-2.1.0.tgz"

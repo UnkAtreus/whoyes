@@ -1,10 +1,19 @@
 import Router from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BaseLayout from "../common/components/layout";
 import { BasePageHeader } from "../common/components";
-import { Button, DatePicker, Form, Input } from "antd";
+import { userInfo } from "os";
 
 function Profile() {
+ 
+  const [user, setData] = useState<any>([]);
+
+  useEffect(()=> {
+    const data = JSON.parse(localStorage.getItem("user") ?? "");
+    console.log(data);
+    setData(data);
+  },[])
+
   return (
     <BaseLayout>
       <BasePageHeader
@@ -26,12 +35,12 @@ function Profile() {
       <div className="max-w-screen-sm p-6">
         <p className="m-0 font-medium text-base">Profile</p>
         <p className="m-0 font-medium text-sm text-gray-400 pb-4">
-          Bisexual (Female)
+          {user.sexualOrientation + " (" + user.gender + ")"} 
         </p>
         <hr></hr>
         <div className="pt-4">
           <p className="m-0 font-medium text-sm">Body Size</p>
-          <p className="m-0 font-normal text-sm">Bust/Waist/Hip: 34/24/36</p>
+          <p className="m-0 font-normal text-sm">Bust/Waist/Hip: {user.bust??'-' + '/' + user.waist??'-' + '/' + user.hip??'='}</p>
         </div>
         <div className="pt-4">
           <p className="m-0 font-medium text-sm">Score</p>

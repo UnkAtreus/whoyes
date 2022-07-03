@@ -1,12 +1,13 @@
 import { Avatar, Tooltip, Comment, Input, Form, Button } from "antd";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsHeartFill } from "react-icons/bs";
 import { TbLollipop } from "react-icons/tb";
 import { BaseLayout, BasePageHeader } from "../../common/components";
 import relativeTime from "dayjs/plugin/relativeTime";
+import PostService from "../service/posts";
 
 dayjs.extend(relativeTime);
 
@@ -15,12 +16,42 @@ interface IChatRoom {
 }
 
 const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
+  const [post, setPostData] = useState<any>({});
+  const [comment, setCommentData] = useState<any>({});
   const Router = useRouter();
+
+  const featchData = async () => {
+    const res = await PostService.id("1");
+    setPostData(res);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Router.push("/login");
+    }
+    featchData();
+  }, []); 
+
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
+    // TODO: API HERE
+
+    AuthService.login(values)
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        Router.push("/");
+      })
+      .catch((e) => console.log(e));
+  };
+
   return (
     <BaseLayout>
       <div className="h-full min-h-[calc(100vh-56px)] flex flex-col ">
         <BasePageHeader
-          title={username}
+          title={post.title}
           handleBack={() => Router.back()}
           handleAction={() => {}}
           action={<BiDotsVerticalRounded className="h-6 w-6" />}
@@ -36,7 +67,7 @@ const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
                 />
               </div>
               <div className="flex-1">
-                <p className="m-0 font-medium text-sm">{username}</p>
+                <p className="m-0 font-medium text-sm">{post.user.username}</p>
                 <p className="m-0 text-zinc-400 text-xs">1.2 km far from you</p>
               </div>
               <span className="flex items-start text-zinc-400 text-xs">
@@ -44,11 +75,7 @@ const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
               </span>
             </div>
             <div className="">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi
-              consectetur, nisi eu consectetur consectetur, nisl nisi
-              consectetur, nisi eu consectetur consectetur, nisl nisi
-              consectetur, nisi eu consectetur consectetur, nisl nisi
+              {post.description}
             </div>
             <div className="flex space-x-4">
               <div className="flex space-x-2 items-center">
