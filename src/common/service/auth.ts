@@ -35,7 +35,13 @@ const AuthService = {
         const $data: {access_token: string, user: {}} = data;
 
         return $data;
-    }
+    },
+    async getById(id: string) {
+        const { data } = await axiosInstance.get(`/user/${id}`);
+        const $data: any = data;
+        return $data;
+    },
+
 }
 
 export default AuthService;
