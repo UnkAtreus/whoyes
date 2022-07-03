@@ -29,13 +29,12 @@ const menu = (
   />
 );
 
-function Chats() {
+function Alert() {
   const [text, setText] = useState("");
   var chatList = [
-    "สวัสดีค่ะ หน้าตาโอเคไหมคะ",
-    "หน้าตาธรรมดาครับ แต่ประสบการณ์โชกโชน",
-    "เออ เริ่ดค่า",
-    ":)",
+    "ผู้ใช้งานคนดังนี้ไม่ได้กดปุ่มหลังพบคู่นอนเป็นเวลา 24 ชม.",
+    "หากติดต่อไม่ได้ สามารถติดต่อทีมงานเพื่อขอข้อมูลเพิ่มเติม",
+    "กรี๊ดดดด ได้ค่ะ ขอบคุณค่ะ"
   ];
 
   const addChatList = () => {
@@ -55,15 +54,15 @@ function Chats() {
           {chatList.map((chat, idx) => (
             <div
               className={
-                "flex mb-2 " + (idx % 2 ? "justify-start" : "justify-end")
+                "flex mb-2 " + (idx >= 2 ? "justify-start" : "justify-end")
               }
             >
               <div
                 className={
                   "px-4 py-2 rounded-xl flex items-center text-sm " +
-                  (idx % 2
+                  (idx >= 2
                     ? "bg-gray-200 rounded-tl-none"
-                    : "bg-darkblue rounded-br-none text-white")
+                    : "bg-redbutton ml-8 rounded-br-none text-white")
                 }
               >
                 {chat}
@@ -101,4 +100,4 @@ function Chats() {
   );
 }
 
-export default Chats;
+export default Alert;

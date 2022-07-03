@@ -46,7 +46,7 @@ function Profile() {
           </p>
         </div>
         <p className="m-0 font-medium text-sm text-gray-400 pb-4">
-          {user.sexualOrientation}
+          {user.sexualOrientation + " (" + user.gender + ")"} 
         </p>
         <hr></hr>
         <div className="pt-4">

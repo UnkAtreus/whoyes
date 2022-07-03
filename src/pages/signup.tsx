@@ -15,7 +15,7 @@ function Signup() {
         console.log(data);
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        Router.push("/");
+        Router.push("/login");
       })
       .catch((e) => console.log(e));
   };

@@ -7,6 +7,8 @@ module.exports = {
       colors: {
         primary: "#48A3E7",
         orange: "#F08A34",
+        darkblue: "#0B1030",
+        redbutton: "#F05E8C",
       },
     },
   },
