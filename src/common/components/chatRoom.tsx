@@ -17,12 +17,13 @@ interface IChatRoom {
 
 const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
   const [post, setPostData] = useState<any>({});
-  const [comment, setCommentData] = useState<any>({});
+  //const [comment, setCommentData] = useState<any>({});
   const Router = useRouter();
 
   const featchData = async () => {
     const res = await PostService.id("1");
     setPostData(res);
+    console.log(res.description);
   };
 
   useEffect(() => {
@@ -31,20 +32,21 @@ const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
       Router.push("/login");
     }
     featchData();
+    console.log(post.user);
   }, []); 
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
     // TODO: API HERE
 
-    AuthService.login(values)
-      .then((data) => {
-        console.log(data);
-        localStorage.setItem("token", data.access_token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        Router.push("/");
-      })
-      .catch((e) => console.log(e));
+    // AuthService.login(values)
+    //   .then((data) => {
+    //     console.log(data);
+    //     localStorage.setItem("token", data.access_token);
+    //     localStorage.setItem("user", JSON.stringify(data.user));
+    //     Router.push("/");
+    //   })
+    //   .catch((e) => console.log(e));
   };
 
   return (
@@ -67,7 +69,7 @@ const ChatRoom: React.FC<IChatRoom> = ({ username }) => {
                 />
               </div>
               <div className="flex-1">
-                <p className="m-0 font-medium text-sm">{post.user.username}</p>
+                <p className="m-0 font-medium text-sm"></p>
                 <p className="m-0 text-zinc-400 text-xs">1.2 km far from you</p>
               </div>
               <span className="flex items-start text-zinc-400 text-xs">
