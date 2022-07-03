@@ -22,7 +22,7 @@ const PostService = {
   },
 
   async id(id: string) {
-    const { data } = await axiosInstance.get(`/posts/${id}`);
+    const { data } = await axiosInstance.get(`/post/${id}`);
 
     const $data: any = data;
 

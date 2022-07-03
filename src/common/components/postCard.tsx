@@ -3,7 +3,9 @@ import { useId } from "react";
 import { BsFillChatSquareTextFill, BsHeartFill } from "react-icons/bs";
 import { TbLollipop } from "react-icons/tb";
 
-function ProfileCard(props: any) {
+import randomInt from "random-int";
+
+function PostCard(props: any) {
   const Router = useRouter();
   const uid = useId();
   return (
@@ -20,25 +22,21 @@ function ProfileCard(props: any) {
           />
         </div>
         <div className="flex-1">
-          <p className="m-0 font-medium text-sm">{props.username}</p>
-          <p className="m-0 text-zinc-400 text-xs">1.2 km far from you</p>
+          <p className="m-0 font-medium text-sm">{props.post.user.username}</p>
+          <p className="m-0 text-zinc-400 text-xs">{parseFloat(props.rand).toFixed(2)} km far from you</p>
         </div>
-        <span className="flex items-start text-zinc-400 text-xs">48 min</span>
+        <span className="flex items-start text-zinc-400 text-xs">{Math.floor(props.rand * 4)} min</span>
       </div>
       <div
         className="line-clamp-3 text-ellipsis overflow-hidden"
         onClick={() => Router.push(`/chats/${uid}`)}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        euismod, nisi eu consectetur consectetur, nisl nisi consectetur, nisi eu
-        consectetur consectetur, nisl nisi consectetur, nisi eu consectetur
-        consectetur, nisl nisi consectetur, nisi eu consectetur consectetur,
-        nisl nisi
+        {props.post.description}
       </div>
       <div className="flex space-x-4">
         <div className="flex space-x-2 items-center">
           <TbLollipop className="text-zinc-500" onClick={props.showModal} />
-          <span>1</span>
+          <span>{randomInt(20)}</span>
         </div>
         <div
           className="flex space-x-2 items-center"
@@ -52,4 +50,4 @@ function ProfileCard(props: any) {
   );
 }
 
-export default ProfileCard;
+export default PostCard;

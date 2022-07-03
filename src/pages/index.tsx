@@ -6,29 +6,29 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
   BaseLayout,
-  ProfileCard,
+  PostCard as PostCard,
   LikeModalContent,
 } from "../common/components";
 import PostService from "../common/service/posts";
 import Logo from "../asset/logo.png";
 
+import randomFloat from "random-float";
+
 const Home: NextPage = () => {
-  const [data, setData] = useState<any>();
+  const [poseList, setData] = useState<any>([]);
   const Router = useRouter();
 
-  // const featchData = async () => {
-  //   const query = 1;
-
-  //   const res = await PostService.id(query.toString());
-  //   setData(res);
-  // };
+  const featchData = async () => {
+    const res = await PostService.list();
+    setData(res);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       Router.push("/login");
     }
-    // featchData();
+    featchData();
   }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -66,14 +66,10 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className="space-y-4">
-          {Array.from({ length: 10 }).map((_, index) => {
+          {poseList.map((post: any) => {
+            let rand = randomFloat(0.5, 10);
             return (
-              <ProfileCard
-                index={index}
-                username="Username"
-                showModal={showModal}
-                key={index}
-              />
+              <PostCard post={post} showModal={showModal} rand={rand} key={post.id} />
             );
           })}
         </div>
