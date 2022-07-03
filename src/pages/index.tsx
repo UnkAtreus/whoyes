@@ -71,7 +71,7 @@ const Home: NextPage = () => {
               <ProfileCard
                 index={index}
                 username="Username"
-                showModal={showModal}
+                showModal="EiEi"//{showModal}
                 key={index}
               />
             );

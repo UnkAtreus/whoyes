@@ -19,6 +19,25 @@ interface ISignup {
     waistSize: number,
     hipSize: number,
     password: string,
+    description: string
+}
+
+interface IUpdate {
+    email: string,
+    firstname: string,
+    lastname: string,
+    birthDate: Date,
+    idCard: string,
+    gender: string,
+    targetGender: string,
+    sexualOrientation: string,
+    height: number,
+    weight: number,
+    penisLenght: number,
+    penisGirth: number,
+    breastSize: number,
+    waistSize: number,
+    hipSize: number,
 }
 
 const AuthService = {
@@ -41,7 +60,11 @@ const AuthService = {
         const $data: any = data;
         return $data;
     },
-
+   async update(user: any,payload: Partial<IUpdate>) {
+        const { data } = await axiosInstance.patch("/user");
+        const $data: any = data;
+        return $data;
+   }
 }
 
 export default AuthService;
